@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+   
+    <style>
+        html{
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .loader div {
+				animation-duration: 0.8s;
+			}
+
+			.loader div:nth-child(1) {
+				animation-delay: 0.1s;
+			}
+			.loader div:nth-child(2) {
+				animation-delay: 0.2s;
+			}
+			.loader div:nth-child(3) {
+				animation-delay: 0.3s;
+			}
+
+        .scrollbar::-webkit-scrollbar {
+         width: 20px;
+         height: 20px;
+        }
+
+        #menu-toggle:checked + #menu{
+            top:80px;
+            height: auto;
+            display: block;
+            transition: top 1s ease;
+        }
+        #menu-toggle + #menu{
+        
+            height: auto;
+            transition: top 1s ease;
+        }
+
+        #bar1, #bar2, #bar3{
+            transition: transform 1s ease;
+        }
+
+    </style>
+</head>
+<body onload="loader()" class="font-Poppins scrollbar scrollbar-thin scrollbar-thumb-classic-green scrollbar-track-white scrollbar-thumb-rounded-full scrollbar-track-rounded-full dark:bg-classic-blue dark:text-white dark:text-opacity-100">
+    <div id="loaders" class="min-h-full w-full fixed overflow-hidden z-50 flex justify-center items-center bg-classic-blue">
+        <div class="loader bg-white px-6 py-3 rounded-full flex space-x-4">
+            <div class="bg-gray-800 rounded-full w-4 h-4 animate-bounce"></div>
+            <div class="bg-gray-800 rounded-full w-4 h-4 animate-bounce"></div>
+            <div class="bg-gray-800 rounded-full w-4 h-4 animate-bounce"></div>
+        </div>
+    </div>
+<button onclick="ToTheTop()" id="TopButton" class="ease-in-out fixed bottom-7 right-9 z-40 border-none outline-none bg-classic-blue text-white cursor-pointer p-15 rounded-md py-4 px-5 hover:bg-classic-blue hover:bg-opacity-50 duration-300 dark:bg-custom-white"><span class="fas fa-arrow-up text-xl text-white dark:text-black dark:text-opacity-100"></span></button>
+    <!-- Header -->
+    <Header>
+        <div class="bg-white dark:bg-classic-blue flex-wrap fixed flex items-center lg:px-36 px-8 justify-between py-9 w-full z-40">
+            <div class="flex justify-start z-50">
+                <span class="text-4xl tracking-normal font-bold cursor-default">K</span><h1 class="text-4xl tracking-normal font-normal cursor-default">ryz<span class="text-4xl tracking-normal font-normal cursor-default">a</span>rt</h1><span class="mt-4 w-3 h-3 ml-2 rounded-full bg-classic-green bottom-0 opacity-80"></span>
+            </div>
+            <input type="checkbox" id="menu-toggle" class="hidden">
+           <ul id="menu" class="absolute -top-72 lg:top-20 left-0 pb-10 lg:pb-0 lg:pr-28 lg:-mt-12 pl-9 dark:bg-classic-blue bg-white flex-1 w-full z-40 h-0 lg:h-auto lg:flex lg:flex-1 items-center justify-end gap-12 text-custom-blue uppercase lg:text-sm tracking-widest dark:text-classic-brown dark:text-opacity-100">
+               <li class="block py-3 cursor-pointer lg:border-b-2 border-transparent hover:border-classic-green"><a href="#hero">Home</a></li>
+               <li class="block py-3 cursor-pointer lg:border-b-2 border-transparent hover:border-classic-green"><a href="#about">About</a></li>
+               <li class="block py-3 cursor-pointer lg:border-b-2 border-transparent hover:border-classic-green"><a href="#skill">Skill</a></li>
+               <li class="block py-3 cursor-pointer lg:border-b-2 border-transparent hover:border-classic-green"><a href="#project">Project</a></li>
+               <button class="bg-classic-blue uppercase text-white px-7 py-3 rounded-md hover:bg-custom-white hover:text-black transition duration-300 dark:bg-classic-green dark:text-white dark:text-opacity-100 dark:hover:bg-custom-white dark:hover:text-classic-blue dark:hover:text-opacity-100" type="button"><a href="https://api.whatsapp.com/send?phone=6287864840762&text=Hallo%Krishna">Contact</a></button>
+               <div class="flex flex-end gap-12 justify-end pr-10">
+               <li class="normal-case dark:text-custom-blue dark:text-opacity-100">Light</li>
+               <div class="flex justify-center items-center -ml-10 -mr-10">
+               <input type="checkbox" name="" id="toggle" class="hidden">
+               <label for="toggle">
+                    <div class="flex flex-1 w-9 h-5 items-center bg-gray-300 rounded-full pl-1 dark:bg-custom-blue">
+                        <div class="toggle-dot transform duration-300 ease-in-out w-4 h-4 bg-white items-start shadow-md rounded-full cursor-pointer"></div>
+                    </div>
+                </div>
+            </label>
+               <li class="normal-case text-custom-gray dark:text-classic-brown dark:text-opacity-100">Dark</li>
+            </div>
+            </ul>
+           <label for="menu-toggle" class="lg:hidden block z-50">
+              
+                    <div class="flex lg:hidden flex-1 flex-col space-y-1 justify-end cursor-pointer z-50" id="bar">
+                        <!-- <i class="fas fa-bars text-2xl"></i> -->
+                        <span id="bar1" class="block h-1 px-3 dark:bg-white bg-black"></span>
+                        <span id="bar3" class="block h-1 px-3 dark:bg-white bg-black"></span>
+                        <span id="bar2" class="block h-1 px-3 dark:bg-white bg-black"></span>
+                    </div>
+               
+          </label>
+        </div>
+    </Header>
+    <!-- End of Header -->
+
+    <!-- Hero -->
+    <section class="relative mt-52" id="hero">
+        <div class="container flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 pb-20 lg:mt-28">
+            <div class="flex flex-1 flex-col items-center lg:items-start -mt-10" data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+                <h2 class="text-custom-gray mt-4 font-light tracking-wide text-xl md:text-xl lg:text-xl text-center lg:text-left mb-3 dark:text-classic-brown dark:text-opacity-50"> Hello There !</h2>
+                <h2 class="text-custom-blue text-3xl md:text-4xl lg:text-5xl text-center lg:text-left mb-6 dark:text-classic-brown dark:text-opacity-100"> I'm Krishna Adnyana</h2>
+                <p class="text-custom-gray text-lg text-center lg:text-left mb-6 dark:text-classic-brown dark:text-opacity-50">My brand name is <span class="font-bold">Kryzart!</span> Welcome to my portfolio website, how are you? Take a look for a minutes if you are interest with my work. Have a nice day!</p>
+                <div class="flex justify-center flex-wrap gap-6">
+                    <button type="button" class="btn btn-green hover:bg-custom-white hover:text-black dark:text-white dark:text-opacity-100 dark:hover:text-classic-blue dark:hover:text-opacity-100"><a href="https://drive.google.com/file/d/12IKCN92qwrr45IRnl4cTbYazMHVdLsUA/view" target="_blank">Download CV</a></button>
+                    <button type="button" class="btn btn-white hover:bg-classic-green dark:text-classic-blue hover:text-white dark:hover:text-white dark:hover:text-opacity-100"><a href="#project">My Project</a></button>
+                </div>
+            </div>
+                <div class="flex flex-1 justify-center mb-10 md:mb-16 lg:mb-0 overflow-hidden">
+                    <img src="./img/bgbg.png" alt="Hero Image" class="z-10 w-5/6 h-5/6 sm:w-3/4 md:w-full md:h-full">
+                    <div class="hidden lg:block z-0 bg-classic-green rounded-l-full absolute h-80 w-2/5 top-32 right-0 lg:-bottom-28">
+                    </div>
+                </div>
+            </div>   
+    </section>
+     <!-- End of Hero -->
+
+      <!-- Skill -->
+    <section class="bg-custom-white dark:bg-custom-blue dark:bg-opacity-50 pb-60 pt-20 mt-20 lg:mt-40" id="skill">
+        <div class="sm:w-3/4 lg:w-3/5 mx-auto px-2">
+            <h1 class="text-3xl text-center text-custom-blue dark:text-classic-brown dark:text-opacity-100">My Skills</h1>
+            <p class="text-center text-custom-gray mt-4 dark:text-classic-brown dark:text-opacity-50">These skills I have gained because of my hard work and friends who helped me a lot during my career in the programming industry from the beginning of high school until now. Currently, i keep to train my skills so that in the future I can add more skills that are certainly useful for myself and others.</p>
+        </div>
+        <div class="relative mt-20 lg:mt-24" data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+            <div class="container flex flex-col lg:flex-row items-center gap-x-24 justify-center">
+               <div class="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
+                   <img src="./img/illustration-features-tab-3.png" alt="" class="w-5/6 h-5/6 sm:w-3/4 md:w-full md:h-full">
+               </div>
+               <div class="flex flex-1 flex-col items-center lg:items-start">
+                    <h1 class="text-center sm:text-left text-3xl text-custom-blue dark:text-classic-brown dark:text-opacity-100">Web Design and Development</h1>
+                    <p class="text-custom-gray my-4 text-center lg:text-left sm:w-3/4 lg:w-full dark:text-classic-brown dark:text-opacity-50">The term "web design" is normally used to describe the design process relating to the front-end design of a website including writing markup.</p>
+                    <button type="button" class="btn btn-green hover:bg-custom-white hover:text-black"><a href="https://www.behance.net/">My Inspiration</a></button>
+               </div>
+            </div>
+            <div class="hidden lg:block bg-classic-green rounded-r-full absolute h-72 w-2/5 -bottom-28">
+            </div>
+        </div>
+
+        <div class="relative mt-20 lg:mt-52" data-aos="fade-left" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+            <div class="container flex flex-col lg:flex-row-reverse items-center gap-x-24 justify-center">
+               <div class="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
+                   <img src="./img/illustration-features-tab-1.png" alt="" class="w-5/6 h-5/6 sm:w-3/4 md:w-full md:h-full">
+               </div>
+               <div class="flex flex-1 flex-col items-center lg:items-end">
+                    <h1 class="text-3xl text-custom-blue dark:text-classic-brown dark:text-opacity-100">UI Design</h1>
+                    <p class="text-custom-gray my-4 text-center lg:text-right sm:w-3/4 lg:w-full dark:text-classic-brown dark:text-opacity-50">UI (user interface) design is all about what users actually see on the application’s screen – text, colors, backgrounds, icons, and moving elements like animations.</p>
+                    <button type="button" class="btn btn-green hover:bg-custom-white hover:text-black"><a href="https://dribbble.com">My Inspiration</a></button>
+               </div>
+            </div>
+            <div class="hidden lg:block bg-classic-green rounded-l-full absolute h-72 w-2/5 right-0 -bottom-28">
+            </div>
+        </div>
+
+        <div class="relative mt-20 lg:mt-52" data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+            <div class="container flex flex-col lg:flex-row items-center gap-x-24 justify-center">
+               <div class="flex flex-1 justify-center z-10 mb-10 lg:mb-0">
+                   <img src="./img/illustration-features-tab-2.png" alt="" class="w-5/6 h-5/6 sm:w-3/4 md:w-full md:h-full">
+               </div>
+               <div class="flex flex-1 flex-col items-center lg:items-start">
+                    <h1 class="text-center sm:text-left text-3xl text-custom-blue dark:text-classic-brown dark:text-opacity-100">Search Engine Optimization</h1>
+                    <p class="text-custom-gray my-4 text-center lg:text-left sm:w-3/4 lg:w-full dark:text-classic-brown dark:text-opacity-50">Search engine optimization (SEO) is the process of improving the quality and quantity of website traffic to a website or a web page from search engines.</p>
+                    <button type="button" class="btn btn-green hover:bg-custom-white hover:text-black"><a href="https://neilpatel.com/">My Inspiration</a></button>
+               </div>
+            </div>
+            <div class="hidden lg:block bg-classic-green rounded-r-full absolute h-72 w-2/5 -bottom-28">
+            </div>
+        </div>
+
+    </section>
+
+    <section class="py-20" id="project">
+        <div class="sm:w-3/4 lg:w-5/12 mx-auto px-2">
+            <h1 class="text-3xl text-center text-custom-blue dark:text-classic-brown dark:text-opacity-100">Web Project</h1>
+            <p class="text-center text-custom-gray mt-4 dark:text-classic-brown dark:text-opacity-50">These are some of the projects and mini projects that I create either individually or collaborating with others.</p>
+        </div>
+        <div class="text-center w-3/4 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-10 gap-14" data-aos="fade-down" data-aos-duration="3000">
+            <div class="flex flex-col rounded-md shadow-md hover:shadow-lg transform translate-5 hover:-translate-y-5 duration-300 dark:bg-custom-blue dark:bg-opacity-50">
+                <div class="p-6 flex flex-col items-center">
+                    <img src="./img/project/1.png" alt="">
+                    <h3 class="mt-5 mb-2 text-custom-blue text-lg dark:text-classic-brown dark:text-opacity-100 text-md lg:text-sm">Project Experiment</h3>
+                    <p class="mb-2 text-custom-blue font-light dark:text-classic-brown dark:text-opacity-100 text-md lg:text-sm">Individual</p>
+                    <p class="mb-2 text-custom-gray font-light italic text-md lg:text-sm">HTML, CSS, JS</p>
+                </div>
+                <hr class="border-b border-custom-white">
+                <div class="flex p-6">
+                    <button type="button" class="flex-1 btn btn-green hover:bg-custom-white hover:text-black"><a href="https://balidoctors.com" target="_blank">See Project</a></button>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-md shadow-md hover:shadow-lg transform translate-5 hover:-translate-y-5 duration-300 dark:bg-custom-blue dark:bg-opacity-50"">
+                <div class="p-6 flex flex-col items-center">
+                    <img src="./img/project/2.png" alt="">
+                    <h3 class="mt-5 mb-2 text-custom-blue text-lg dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Project Experiment</h3>
+                    <p class="mb-2 text-custom-blue font-light dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Collaboration</p>
+                    <p class="mb-2 text-custom-gray font-light italic text-md lg:text-sm">HTML, TailwindCSS</p>
+                </div>
+                <hr class="border-b border-custom-white">
+                <div class="flex p-6">
+                     <button type="button" class="flex-1 btn btn-green hover:bg-custom-white hover:text-black"><a href="https://krishnaptr.github.io/Phostic" target="_blank">See Project</a></button>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-md shadow-md hover:shadow-lg transform translate-5 hover:-translate-y-5 duration-300 dark:bg-custom-blue dark:bg-opacity-50"">
+                <div class="p-6 flex flex-col items-center">
+                    <img src="./img/project/3.png" alt="">
+                    <h3 class="mt-5 mb-2 text-custom-blue text-lg dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Local Project</h3>
+                    <p class="mb-2 text-custom-blue font-blue dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Individual</p>
+                    <p class="mb-2 text-custom-gray font-light italic text-md lg:text-sm">Wordpress, CSS, JS</p>
+                </div>
+                <hr class="border-b border-custom-white">
+                <div class="flex p-6">
+                     <button type="button" class="flex-1 btn btn-green hover:bg-custom-white hover:text-black" target="_blank"><a href="img/project/Web Capture The Caliber Shop.jpeg">See Project</a></button>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-md shadow-md hover:shadow-lg transform translate-5 hover:-translate-y-5 duration-300 dark:bg-custom-blue dark:bg-opacity-50"">
+                <div class="p-6 flex flex-col items-center">
+                    <img src="./img/project/4.png" alt="">
+                    <h3 class="mt-5 mb-2 text-custom-blue text-lg dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Local Project</h3>
+                    <p class="mb-2 text-custom-blue font-light dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Individual</p>
+                    <p class="mb-2 text-custom-gray font-light italic text-md lg:text-sm">Wordpress, CSS, JS</p>
+                </div>
+                <hr class="border-b border-custom-white">
+                <div class="flex p-6">
+                     <button type="button" class="flex-1 btn btn-green hover:bg-custom-white hover:text-black"><a href="img/project/Web Caputure Kepedulian Kami.jpeg" target="_blank">See Project</a></button>
+                </div>
+            </div>
+        </div>
+        <div class="w-3/4 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-10 gap-14" data-aos="fade-down" data-aos-duration="3000">
+            <div class="flex flex-col rounded-md shadow-md hover:shadow-lg transform translate-5 hover:-translate-y-5 duration-300 dark:bg-custom-blue dark:bg-opacity-50"">
+                <div class="p-6 flex flex-col items-center">
+                    <img src="./img/project/5.png" alt="">
+                    <h3 class="mt-5 mb-2 text-custom-blue text-lg dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Web Project</h3>
+                    <p class="mb-2 text-custom-blue font-light dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Collaboration</p>
+                    <p class="mb-2 text-custom-gray font-light italic text-md lg:text-sm">Wordpress, CSS, JS</p>
+                </div>
+                <hr class="border-b border-custom-white">
+                <div class="flex p-6">
+                    <button type="button" class="flex-1 btn btn-green hover:bg-custom-white hover:text-black"><a href="https://baliomdesign.com" target="_blank">See Project</a></button>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-md shadow-md hover:shadow-lg transform translate-5 hover:-translate-y-5 duration-300 dark:bg-custom-blue dark:bg-opacity-50"">
+                <div class="p-6 flex flex-col items-center">
+                    <img src="./img/project/6.png" alt="">
+                    <h3 class="mt-5 mb-2 text-custom-blue text-lg dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Mini Project</h3>
+                    <p class="mb-2 text-custom-blue font-light dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Individual</p>
+                    <p class="mb-2 text-custom-gray font-light italic text-md lg:text-sm">HTML, TailwindCSS</p>
+                </div>
+                <hr class="border-b border-custom-white">
+                <div class="flex p-6">
+                     <button type="button" class="flex-1 btn btn-green hover:bg-custom-white hover:text-black"><a href="https://krishnaptr.github.io/play_ground/simple_loader" target="_blank">See Project</a></button>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-md shadow-md hover:shadow-lg transform translate-5 hover:-translate-y-5 duration-300 dark:bg-custom-blue dark:bg-opacity-50"">
+                <div class="p-6 flex flex-col items-center">
+                    <img src="./img/project/7.png" alt="">
+                    <h3 class="mt-5 mb-2 text-custom-blue text-lg dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Mini Project</h3>
+                    <p class="mb-2 text-custom-blue font-light dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Individual</p>
+                    <p class="mb-2 text-custom-gray font-light text-cente italic text-md lg:text-sm">HTML, TailwindCSS, JS</p>
+                </div>
+                <hr class="border-b border-custom-white">
+                <div class="flex p-6">
+                     <button type="button" class="flex-1 btn btn-green hover:bg-custom-white hover:text-black"><a href="https://krishnaptr.github.io/play_ground/grid_bg" target="_blank">See Project</a></button>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-md shadow-md hover:shadow-lg transform translate-5 hover:-translate-y-5 duration-300 dark:bg-custom-blue dark:bg-opacity-50"">
+                <div class="p-6 flex flex-col items-center">
+                    <img src="./img/project/8.png" alt="">
+                    <h3 class="mt-5 mb-2 text-custom-blue text-lg dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Mini Project</h3>
+                    <p class="mb-2 text-custom-blue font-light dark:text-classic-brown dark:text-opacity- text-md lg:text-sm">Individual</p>
+                    <p class="mb-2 text-custom-gray font-light italic text-md lg:text-sm">HTML, TailwindCSS</p>
+                </div>
+                <hr class="border-b border-custom-white">
+                <div class="flex p-6">
+                     <button type="button" class="flex-1 btn btn-green hover:bg-custom-white hover:text-black"><a href="https://krishnaptr.github.io/play_ground/spotify_home" target="_blank">See Projec</a>></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-classic-blue py-10">
+        <div class="container flex flex-col flex-wrap md:flex-row items-center">
+            <div class="flex flex-1 flex-wrap items-center justify-center md:justify-start text-white">
+                <!-- <span class="text-4xl tracking-normal font-bold cursor-default">K</span><h1 class="text-4xl tracking-normal font-normal cursor-default">ryz<span class="text-4xl tracking-normal font-normal cursor-default">a</span>rt</h1><span class="ml-2 w-3 h-3 rounded-full bg-classic-green bottom-0 opacity-80"></span> -->
+                <ul class="flex-wrap uppercase gap-12 flex sm:flex-rows flex-1 justify-start text-xs items-center text-center sm:ml-10 mt-4 text-white md:text-sm tracking-widest dark:text-classic-brown dark:text-opacity-100">
+                    <li class="cursor-pointer border-b-2 border-transparent hover:border-classic-green"><a href="#hero">Home</a></li>
+                    <li class="cursor-pointer border-b-2 border-transparent hover:border-classic-green"><a href="#about">About</a></li>
+                    <li class="cursor-pointer border-b-2 border-transparent hover:border-classic-green"><a href="#skill">Skill</a></li>
+                    <li class="cursor-pointer border-b-2 border-transparent hover:border-classic-green"><a href="#project">Project</a></li>
+                </ul>
+            </div>
+            <div class="flex flex-1 justify-center mx-auto gap-10 mt-12 mb-6 md:mb-0 md:mt-3 no-underline list-none items-center">
+                
+               
+                <li><a href="https://github.com/krishnaptr"><i class="text-white text-md md:text-2xl fab fa-github"></i></a></li>
+                <li><a href="https://linkedin.com/in/krishnaadnyanaptr25"><i class="text-white text-md md:text-2xl fab fa-linkedin"></i></a></li>
+                <li class="text-sm md:text-normal text-white mb-1 ml-8">Made with <i class="fas fa-heart text-md text-red-500 mt-1"></i> using TailwindCSS </li>
+               
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init(
+            {
+                disable: 'mobile',
+                once: true,
+            }
+            
+            );
+        AOS.refresh();
+    </script>    
+    <script src="main.js"></script>
+</body>
+</html>
